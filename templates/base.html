@@ -1,0 +1,27 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='img/favicon.png') }}"> 
+    <link rel="apple-touch-icon" type="image/png" href="{{ url_for('static', filename='img/favicon.png') }}">
+
+    <!-- Carregando o styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <!-- Carregando o botstrap -->
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body class="sidebar-mini login-page" style="background-color: #F5F5F5;">
+    <div class="login-box">
+        {% block content %}{% endblock %}
+    </div>
+    <!-- Optional Bootstrap JS -->
+    <script src="../static/js/jquery-3.5.1.slim.min.js"></script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

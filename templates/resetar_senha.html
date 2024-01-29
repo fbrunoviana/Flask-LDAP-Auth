@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="col mx-auto text-center">
+                    <img class="text-center" src="../static/img/logo.png"/>
+                </div>
+                <br>
+                <h2 class="text-center">Esqueceu a senha</h2>
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div class="alert alert-danger mt-3 d-flex align-items-center justify-content-between" role="alert">
+                            <div>
+                                {% for category, message in messages %}
+                                    {{ message }} - Não possui cadastro? 
+                                {% endfor %}
+                                <a href="{{ url_for('register') }}" class="alert-link ml-2">Clique aqui para se Cadastrar.</a>
+                            </div>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endif %}
+                {% endwith %}
+            
+            
+
+                <form action="/resetar_senha" method="post" class="needs-validation">
+                    <div class="form-group">
+                        <label for="cpf"><strong>CPF (login):</strong></label>
+                        <input type="text" class="form-control" id="cpf" name="cpf" required placeholder="Somente números" autocomplete="off">
+                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="securityQuestion"><strong>Escolha uma pergunta de segurança:</strong></label>
+                        <select class="form-control" id="securityQuestion" name="securityQuestion" required="">
+                        <option value="">Selecione uma pergunta...</option>
+                        <option value="friend">Qual era o nome do seu melhor amigo na infância?</option>
+                        <option value="school">Qual era o nome da sua primeira escola?</option>
+                        <option value="job">Qual foi o primeiro emprego que você teve?</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="security_answer"><strong>Resposta de Segurança:</strong></label>
+                        <input type="text" class="form-control" name="securityAnswer" id="securityAnswer" required placeholder="Digite sua resposta da pergunta acima" autocomplete="off">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password"><strong>Senha:</strong></label>
+                        <input type="password" class="form-control password-strength__input" id="password" name="password" required placeholder="Digite sua senha">
+                        <div class="password-strength__error js-hidden">A senha não deve conter caracteres consecutivos.</div>
+                        <div class="password-strength__visibility"></div>
+
+                        <div class="form-group">
+                            <label for="confirm_password"><strong>Confirme a Senha:</strong></label>
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" required placeholder="Confirme sua senha">
+                            <div id="passwordConfirmFeedback" class="invalid-feedback">
+                                As senhas não correspondem!
+                            </div>
+                        </div>                        
+
+                        <div class="progress mt-2">
+                            <div class="progress-bar password-strength__bar" role="progressbar" style="width: 0%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                        <strong>  Sua senha deve atender as seguintes regras:                        </strong>
+                        <ul class="mt-2" id="passwordCriteria">
+                            <li class="criteria-length">Ter pelo menos 10 (dez) caracteres</li>
+                            <li class="criteria-uppercase">Ter caracteres maiúsculos (A-Z)</li>
+                            <li class="criteria-lowercase">Conter caracteres minúsculos (a-z)</li>
+                            <li class="criteria-digit">Conter dígitos de base 10 (0 a 9)</li>
+                            <li class="criteria-special">Conter caracteres não alfabéticos (ex: !, $, #, %)</li>
+                        </ul>
+                        
+                    </div>
+                    
+                    <div class="col mx-auto text-center">
+                        <button type="submit" class="btn btn-success password-strength__submit" >Salvar</button>
+                    </div>
+                    
+                    <br>
+                    <br>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="../static/js/script.js"></script>
+{% endblock %}

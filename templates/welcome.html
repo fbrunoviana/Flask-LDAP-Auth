@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"> -->
+
+    <title>Bem-vindo</title>
+
+    <div class="container mt-5">
+        
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="col mx-auto text-center">
+                    <img class="text-center" src="../static/img/logo.png"/>
+                </div>
+                <br>
+                <h3 class="card-title text-center mb-4">Bem-vindo</h3><br>
+                <p style="text-align: justify;">
+                    <strong>Solicitamos que você leia e concorde com os seguintes termos e condições:</strong>
+                </p>
+        
+                
+<!-- PDF Embed -->
+<div style="height: 400px; overflow: auto;" id="pdfContainer">
+    <object data="{{ url_for('static', filename='pdf/regras.pdf') }}" type="application/pdf" width="100%" height="600px">
+        <p>Seu navegador não suporta a visualização de PDFs. Por favor, <a href="{{ url_for('static', filename='pdf/regras.pdf') }}">clique aqui</a> para baixar o PDF.</p>
+    </object>
+</div>
+
+
+&nbsp;
+                    <div style="text-align: justify;">
+                        <button type="button" class="btn btn-link">
+                            <i class="bi bi-check-square"></i>
+                          </button>
+                        
+                        <strong>Leia até o final do Documento </strong>para concordar com os termos.
+                    </div>
+                
+                    <form method="POST">
+                        <div class="form-group text-center" style="margin-bottom: 10%;">
+                            <button type="submit" class="btn btn-primary mt-4" id="agreeButton" >Aceito e concordo</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+

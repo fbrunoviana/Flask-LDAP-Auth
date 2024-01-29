@@ -1,0 +1,170 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+ <div class="row justify-content-center">
+  <div class="col-md-6">
+   <div class="col mx-auto text-center">
+    <img class="text-center" src="../static/img/logo.png"/>
+   </div>
+   <br/>
+   <h2 class="text-center">
+    Cadastre-se
+   </h2>
+   {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+   <div class="alert alert-danger mt-3 d-flex align-items-center justify-content-between" role="alert">
+    <div>
+     {% for category, message in messages %}
+                                {{ message }} - Esqueceu sua senha? 
+                            {% endfor %}
+     <a class="alert-link ml-2" href="{{ url_for('resetar_senha') }}">
+      Clique aqui para redefinir.
+     </a>
+    </div>
+    <button aria-label="Close" class="close" data-dismiss="alert" type="button">
+     <span aria-hidden="true">
+      ×
+     </span>
+    </button>
+   </div>
+   {% endif %}
+            {% endwith %}
+
+            <!-- Senha modal -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+<div class="alert alert-danger mt-3 d-flex align-items-center justify-content-between" role="alert">
+<div>
+
+ <a class="alert-link ml-2" href="{{ url_for('resetar_senha') }}">
+  Clique aqui para redefinir.
+ </a>
+</div>
+<button aria-label="Close" class="close" data-dismiss="alert" type="button">
+ <span aria-hidden="true">
+  ×
+ </span>
+</button>
+</div>
+{% endif %}
+        {% endwith %}
+
+   <form action="/" class="needs-validation" method="post">
+    <div class="form-group">
+     <label for="cpf">
+      <strong>
+       CPF (login):
+      </strong>
+     </label>
+     <input autocomplete="off" class="form-control {{ 'is-invalid' if cpf_invalid }}" id="cpf" name="cpf" placeholder="Somente números" required="" type="text"/>
+     <div class="invalid-feedback">
+      Informe um CPF válido
+     </div>
+    </div>
+    <div class="form-group">
+     <label for="name">
+      <strong>
+       Nome:
+      </strong>
+     </label>
+     <input autocomplete="off" class="form-control" id="nome" name="name" placeholder="Digite seu nome completo" required="" type="text"/>
+    </div>
+    <div class="form-group">
+     <label for="securityQuestion">
+      <strong>
+       Escolha uma pergunta de segurança:
+      </strong>
+     </label>
+     <select class="form-control" id="securityQuestion" name="securityQuestion" required="">
+      <option value="">
+       Selecione uma pergunta...
+      </option>
+      <option value="friend">
+       Qual era o nome do seu melhor amigo na infância?
+      </option>
+      <option value="school">
+       Qual era o nome da sua primeira escola?
+      </option>
+      <option value="job">
+       Qual foi o primeiro emprego que você teve?
+      </option>
+     </select>
+    </div>
+    <div class="form-group">
+     <label for="security_answer">
+      <strong>
+       Resposta de Segurança:
+      </strong>
+     </label>
+     <input autocomplete="off" class="form-control" id="securityAnswer" name="securityAnswer" placeholder="Digite sua resposta da pergunta acima" required="" type="text"/>
+    </div>
+    <div class="form-group">
+     <label for="password">
+      <strong>
+       Senha:
+      </strong>
+     </label>
+     <input class="form-control password-strength__input" id="password" name="password" placeholder="Digite sua senha" required="" type="password"/>
+     <div class="password-strength__error js-hidden">
+      A senha não deve conter caracteres consecutivos.
+     </div>
+     <div class="password-strength__visibility">
+     </div>
+     <div class="form-group">
+      <label for="confirm_password">
+       <strong>
+        Confirme a Senha:
+       </strong>
+      </label>
+      <input class="form-control" id="confirm_password" name="confirm_password" placeholder="Confirme sua senha" required="" type="password"/>
+      <div class="invalid-feedback" id="passwordConfirmFeedback">
+       As senhas não correspondem!
+      </div>
+     </div>
+     <div class="progress mt-2">
+      <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="0" class="progress-bar password-strength__bar" role="progressbar" style="width: 0%;">
+      </div>
+     </div>
+     <div style="margin-top: 2%;">
+      <strong>
+       Sua senha deve atender as seguintes regras:
+      </strong>
+      <ul class="mt-2" id="passwordCriteria">
+       <li class="criteria-length">
+        Ter pelo menos 10 (dez) caracteres
+       </li>
+       <li class="criteria-uppercase">
+        Ter caracteres maiúsculos (A-Z)
+       </li>
+       <li class="criteria-lowercase">
+        Conter caracteres minúsculos (a-z)
+       </li>
+       <li class="criteria-digit">
+        Conter dígitos de base 10 (0 a 9)
+       </li>
+       <li class="criteria-special">
+        Conter caracteres não alfabéticos (ex: !, $, #, %)
+       </li>
+
+      </ul>
+     </div>
+    </div>
+    <br/>
+    <div class="col mx-auto text-center">
+     
+    <input type="checkbox" id="termosCheckbox"> Ao clicar no botão cadastrar você leu e aceitou os <a href="/static/pdf/regras.pdf" target="_blank">termos</a> 
+
+     <br/>
+     <button class="btn btn-primary password-strength__submit"  type="submit" id="cadastrarButton" disabled>
+      Cadastrar
+     </button>
+    </div>
+    <br/>
+    <br/>
+   </form>
+  </div>
+ </div>
+</div>
+<script src="../static/js/script.js">
+</script>
+{% endblock %}

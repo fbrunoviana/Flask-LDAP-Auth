@@ -1,6 +1,6 @@
 # Flask LDAP Auth
 
-<img src="static/img/login.png" width="300" height="300"/>
+<img src="static/img/logo.png" width="300" height="300"/>
 
 ## Descrição
 

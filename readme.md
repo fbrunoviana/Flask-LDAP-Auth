@@ -1,6 +1,6 @@
 # Flask LDAP Auth
 
-<img src="static/img/logo-login.png" width="200" height="500"/>
+<img src="static/img/logo-login.png" width="550" height="200"/>
 Essa aplicação é um exemplo de como usar o LDAP com Flask. 
 
 Nesse exemplo ultilizo o CPF como campo principal de login, fazendo uma validação simples com o `validate-docbr`.
